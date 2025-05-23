@@ -1,5 +1,6 @@
 # knapsack problem
 
+# iterative approach
 def knapsack(P, W, k):  # P - list of prices, W - list of weights, k - backpack weight capacity
 
     n = len(P)
@@ -13,3 +14,26 @@ def knapsack(P, W, k):  # P - list of prices, W - list of weights, k - backpack 
                 F[i][j] = max(F[i][j], F[i-1][j-W[i-1]]+P[i-1])
 
     return F[n][k]
+
+
+# recursive approach
+D = {}
+
+
+def knapsack2(P, W, i, k):
+
+    if k == 0:
+        return 0
+    if i == 0:
+        return 0
+
+    if (i, k) in D:
+        return D[(i, k)]
+
+    val = knapsack2(P, W, i-1, k)
+
+    if 0 <= k-W[i]:
+        val = max(val, knapsack2(P, W, i-1, k-W[i])+P[i])
+
+    D[(i, k)] = val
+    return val
