@@ -14,7 +14,6 @@
 # zlozonosc: O(mn)
 #
 # opis: funkcja parking iteracyjnie wypelnia tablice n x m elementow F[i][j] jest najmniejsza mozliwa suma odleglosci wszytskich kombinacji budynkow od 0 do i i parkingow od 0 do j
-from zad6testy import runtests
 
 
 def parking(X, Y):
@@ -42,7 +41,3 @@ def parking(X, Y):
                 F[i][j] = min(F[i][j], F[i][j-1])
 
     return F[n-1][m-1]
-
-
-# zmien all_tests na True zeby uruchomic wszystkie testy
-runtests(parking, all_tests=True)
